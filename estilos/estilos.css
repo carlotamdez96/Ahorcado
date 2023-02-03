@@ -11,8 +11,8 @@
 
 }
 body{
-    overflow-x: hidden;
-    background-image: url(../imagenes/fondo.jpg);
+    overflow: hidden;
+    background-image: url(../imagenes/fondo3.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -48,7 +48,7 @@ body{
 }
 .mensaje{
     text-align: center;
-    font-size: 3em;
+    font-size: 3.2em;
     text-transform: uppercase;
     position: relative;
     z-index: 2;
@@ -57,6 +57,7 @@ body{
     background-color: #F2C063;
     color:#D96725;
     font-family: 'Special Elite', cursive;
+    
 }
 .fallos{
     /* align-items: center; */
@@ -64,10 +65,16 @@ body{
     position: relative;
     top: -400px;
     right: -650px;
+    background-color: #D96725;
+    width: 12vw;
+    
+
+}
+.fallos__span{
     text-decoration: line-through;
     font-size: 1.4em;
     color: white;
-
+    margin: 5px;
 }
 
 .instrucciones__parrafo{

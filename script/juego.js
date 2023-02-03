@@ -44,17 +44,31 @@ getinstrucciones();
             
         if((even.keyCode>64 && even.keyCode<91)|| (even.keyCode>96 && even.keyCode<123) || (even.keyCode>163 && even.keyCode<166) ){
         var letra= even.key.toUpperCase();
-        if(letra!=pista1 || letra!=pista2){
+        if(letra!=pista1 && letra!=pista2){
         let indices =comprobarPalabra(letra,palabraGenerada);
         if(indices.length>0){ //La letra se encuentra en la palabra
             for (let indice of indices) {
                 pintaLetra(indice,letra);
+                contadorAciertos++;
             }
+            
+
             //Comprobar si gane
-            if(contadorAciertos== palabraGenerada.length){
-                resultado.innerHTML=`<h1>Ganaste!!!</h1>`
-                // boton.hidden="false";
+            if(palabraGenerada.length>5){
+                if(contadorAciertos+2== palabraGenerada.length){
+                
+                    resultado.innerHTML=`<h1>Ganaste!!!</h1>`
+                }
+            }else{
+                if(contadorAciertos+1== palabraGenerada.length){
+                
+                    resultado.innerHTML=`<h1>Ganaste!!!</h1>`
+               
+                    
+                    // boton.hidden="false";
+                }
             }
+            
     
         }else{
             //La letra no aparece en la palabra llamo a la funcion que pinta el canvas
@@ -208,12 +222,12 @@ function pintaLetra(posicion,letra){
   
     let coleccion =document.querySelector(".palabra").children;
     coleccion[posicion].textContent=letra;
-    contadorAciertos++;
+    
 }
 //FUncion pintar fallo
 function pintarFallo(letra){
     let espacio = document.querySelector(".fallos");
-    espacio.innerHTML+=` ${letra} `;
+    espacio.innerHTML+=`<span class="fallos__span"> ${letra} <span> `;
 }
 
 //Funcion de genera pista
