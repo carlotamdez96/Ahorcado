@@ -16,6 +16,7 @@
     var vidas=7;
     var pista1;
     var pista2="";
+    var arrayfallos=[];
 
     
     
@@ -41,10 +42,11 @@ getinstrucciones();
 
     function teclaPulsada(even){
         if(vidas!=0){ // Si tengo vidas...
-            
-        if((even.keyCode>64 && even.keyCode<91)|| (even.keyCode>96 && even.keyCode<123) || (even.keyCode>163 && even.keyCode<166) ){
+            console.log(even.keyCode);
+        if((even.keyCode>64 && even.keyCode<91)|| (even.keyCode>96 && even.keyCode<123) || (even.keyCode>191 && even.keyCode<193) ){
         var letra= even.key.toUpperCase();
         if(letra!=pista1 && letra!=pista2){
+            
         let indices =comprobarPalabra(letra,palabraGenerada);
         if(indices.length>0){ //La letra se encuentra en la palabra
             for (let indice of indices) {
@@ -72,9 +74,12 @@ getinstrucciones();
     
         }else{
             //La letra no aparece en la palabra llamo a la funcion que pinta el canvas
-            vidas--;
+            //funcion que comprueba si esa letra ya se ha pintado como fallo
+            if(!compruebaFallo(letra)){
+                vidas--;
             contadorFallos++;
             pintarFallo(letra);
+            arrayfallos.push(letra);
             switch(contadorFallos){
                 case 1:
                     pintaSoga();
@@ -112,6 +117,8 @@ getinstrucciones();
                 break;
                 
             }
+            }
+            
         }
         }
         
@@ -160,7 +167,14 @@ function getinstrucciones(){
     Cuando le salgan las pistas en la pantalla, introduce letra a letra mediante el teclado, las que consideres que necesitas para no acabar AHORCADO!. Cada respuesta que falles más cerca de morir ahorcado estarás.<br>
     ¿Estás listo?</p>`;
 }
-
+//Esta funcion comprobará si dentro del array de fallos (las letras ya introducidas que estan mal) se encuentra la letra
+function compruebaFallo(letra){
+    for (let fallito of arrayfallos) {
+        if(fallito === letra){
+            return true;
+        }
+    }
+}
 
 //Funcion que con la palabra ya elegida dependiendo de la longitud, de una pista
 //La pista será una letra de la palabra
@@ -251,9 +265,9 @@ function numRepetidasenPalabra(palabraGenerada,letraPista){
 //Funcion que elige una palabra al azar
 function getPalabra() {
     var palabras = [
-        "sotano","jinete","casa","brujula","pantano","caballero","centauro","amansador",
-        "montador","vaquero","texas","llanero","ganadero","cazador","cactus","espejismo","rancho","vaquerizo","mantequilla","cuadra","establo",
-        "caballo","antiguo","oeste"
+        "jinete","perdido","brujula","calidad","caballero","valores","control",
+        "caminar","vaquero","texas","montaña","ganadero","cazador","cactus","rancho","castigo","enfermo","sentido","establo","antiguo","natural","reflejo","aliento","cansado","cercano",
+        "murcielago","esencia","detener","escrito","cosecha","pobreza","soledad"
     ];
     let numero = generaNum(palabras.length);
     return palabras[numero].toUpperCase();
