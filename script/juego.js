@@ -58,12 +58,12 @@ getinstrucciones();
             //Comprobar si gane
             if(palabraGenerada.length>5){
                 if(contadorAciertos+2== palabraGenerada.length){
-                
+                    resultado.style.backgroundColor="#f2c063";
                     resultado.innerHTML=`<h1>Ganaste!!!</h1>`
                 }
             }else{
                 if(contadorAciertos+1== palabraGenerada.length){
-                
+                    resultado.style.backgroundColor="#f2c063";
                     resultado.innerHTML=`<h1>Ganaste!!!</h1>`
                
                     
@@ -108,6 +108,7 @@ getinstrucciones();
                 case 7:
                     pintaPiernaI();
                     console.log("Perdiste");
+                    resultado.style.backgroundColor="#f2c063";
                     resultado.innerHTML=`<h1>Perdiste!</h1>`
                     pintaSolucion();
                     boton.style.display="block";
@@ -267,7 +268,7 @@ function getPalabra() {
     var palabras = [
         "jinete","perdido","brujula","calidad","caballero","valores","control",
         "caminar","vaquero","texas","montaña","ganadero","cazador","cactus","rancho","castigo","enfermo","sentido","establo","antiguo","natural","reflejo","aliento","cansado","cercano",
-        "murcielago","esencia","detener","escrito","cosecha","pobreza","soledad"
+        "murcielago","esencia","detener","escrito","cosecha","pobreza"
     ];
     let numero = generaNum(palabras.length);
     return palabras[numero].toUpperCase();
